@@ -1,0 +1,41 @@
+if (empty($regions) && empty($operators) && empty($timeZones)) {
+            $customFields = CacheHelper::getCustomFields();
+            foreach ($tableNames as $index => $tableName) {
+                $columnData = CountColumnData::firstWhere('table_name', $tableName);
+                $totalRows = $columnData->total_rows;
+                $result = [];
+                if ($request->has('cf_f')) {
+                    foreach ($request->get('cf_f') as $cfId => $value) {
+                        $name = $customFields->firstWhere('id', (int)$cfId)?->name_in_phone_table;
+                        if (!$name) {
+                            \Log::warning("filterGetTotalRows: Custom field ID {$cfId} not found in the database.");
+                            continue;
+                        }
+//dd($name,$columnData->$name);
+                        if ($value === 'filled') {
+                            $result[$tableName] = ($result[$tableName] ?? 0) + ($columnData->$name ?? 0);
+                        } elseif ($value === 'empty') {
+                            $result[$tableName] = ($result[$tableName] ?? 0) + ($columnData->$name ?? 0);
+                        }
+                    }
+                }
+            }
+        }
+		
+		App\Services\PhoneParserService\PhoneGeoData^ {#2075
+  -countryCode: "RU"
+  -regionCode: "RU-UD"
+  -timeZone: "+4:00"
+  -operator: "ПАО РОСТЕЛЕКОМ"
+  -hrCountries: null
+  -hrRegions: null
+  -lang: "ru"
+} // app\Helpers\FileWriterHelper.php:350
+
+private function insertDataIntoShardingPhoneTable(string $tableName, array $phoneRow): int|null
+    {
+        $phoneRow = [
+            "phone" => "73412207769",
+  "db_id" => 4,
+  "time_zone_id" => null,
+] ;
