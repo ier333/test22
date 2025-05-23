@@ -20,7 +20,7 @@ if (empty($regions) && empty($operators) && empty($timeZones)) {
                     }
                 }
             }
-        }nnnnnnnnn
+        }nnnnnnnnnrrrrrrrrr
 		
 		App\Services\PhoneParserService\PhoneGeoData^ {#2075
   -countryCode: "RU"
